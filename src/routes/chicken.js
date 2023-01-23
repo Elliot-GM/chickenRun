@@ -2,8 +2,6 @@ const express = require("express");
 const Chicken = require("../models/chicken");
 const router = new express.Router();
 
-module.exports = router;
-
 // post
 router.post('/chickens', async (req, res, next) => {
     const chicken = new Chicken(req.body);
@@ -64,7 +62,7 @@ router.put('/chickens/:id', async (req, res, next) => {
     }
 })
 
-// past
+// patch
 router.patch('/chickens/:id', async (req, res, next) => {
     try {
         const chicken = await Chicken.findByIdAndUpdate(req.params.id, req.body, {
@@ -91,3 +89,35 @@ router.delete('/chickens/:id', async (req, res, next) => {
         res.status(500).send(error);
     }
 })
+
+// RUN !
+router.post('/chicken/run', async (req, res, next) => {
+    try {
+        const chickens = await Chicken.updateMany({ "isRunning": true }, {$inc: { "steps": 1}});
+        res.send(chickens);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+// farmyard =>
+router.post('/chicken/farmyard', async (req, res, next) => {
+    try {
+        const chickens = await Chicken.updateMany({ "isRunning": false }, { "isRunning": true });
+        res.send(chickens);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+// chickenCoop zzz
+router.post('/chicken/chickenCoop', async (req, res, next) => {
+    try {
+        const chickens = await Chicken.updateMany({ "isRunning": true }, { "isRunning": false });
+        res.send(chickens);
+    } catch(error) {
+        res.status(500).send(error);
+    }
+})
+
+module.exports = router;
