@@ -1,15 +1,33 @@
 # chickenRun
 basic nodeJs api
 
-## First step
-connect your mondodb database
+## 🛠 First step
+```
 create a .env file and fill it like the .env.conf
+    - connect your mondodb database
+    - choose a port
+```
 
-## run
+
+## Run
+install dependencies :
+```bash
 npm install
-node ./app.js
+```
 
-## use
-Express
-Mongodb
-Mongoose
+run the program :
+```bash
+node ./app.js
+```
+
+## Which libraries are used ?
+[ExpressJS](https://expressjs.com/)
+
+[Mongodb](https://www.mongodb.com/)
+
+[MongooseJs](https://mongoosejs.com/)
+
+
+## Author
+
+- [@ElliotGM]
